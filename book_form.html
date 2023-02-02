@@ -1,0 +1,25 @@
+<?html
+require("connection.html");
+   if(isset($_POST['send'])){
+      $name = $_POST['name'];
+      $email = $_POST['email'];
+      $phone = $_POST['phone'];
+      $address = $_POST['address'];
+      $location = $_POST['location'];
+      $guests = $_POST['guests'];
+
+
+      $request = " insert into book_form(name, email, phone, address, location, guests) values('$name','$email','$phone','$address','$location','$guests') ";
+
+      
+      mysqli_query($connection, $request);
+      $last_id = $connection->insert_id; // get the the id of the currenter user 
+      $_SESSION['user_id'] = $last_id ;
+      
+      header('location:registerd.html'); 
+
+   }else{
+      echo 'something went wrong please try again!';  
+   }
+
+?>
